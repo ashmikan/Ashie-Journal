@@ -1,0 +1,124 @@
+---
+// Hero.astro - Soft, romantic, retro-vintage hero section
+---
+
+<section class="max-w-5xl mx-auto px-4 sm:px-6 pt-3 pb-8 md:py-6">
+  <!-- Rounded Rectangular Container with Vintage Desk Background Image -->
+  <div
+    class="relative rounded-3xl sm:rounded-[36px] overflow-hidden shadow-[0_20px_50px_rgba(70,45,40,0.14)] border border-[#EBE1D8] min-h-[480px] sm:min-h-[540px] md:min-h-[580px] flex items-center justify-center p-5 sm:p-8 md:p-12"
+  >
+    <!-- Background Image with Vintage Film Warm Vignette -->
+    <img
+      src="/images/hero_vintage_desk.jpg"
+      alt="Vintage wooden desk with open antique book, candle, and dried rose petals"
+      class="absolute inset-0 w-full h-full object-cover object-center scale-105 filter brightness-[0.92] contrast-[1.03]"
+      loading="eager"
+    />
+
+    <!-- Subtle warm atmospheric gradient overlays -->
+    <div
+      class="absolute inset-0 bg-gradient-to-t from-stone-900/35 via-stone-900/15 to-stone-900/25 pointer-events-none"
+    >
+    </div>
+    <div
+      class="absolute inset-0 bg-[#E89BAE]/10 mix-blend-soft-light pointer-events-none"
+    >
+    </div>
+
+    <!-- Centered Translucent White Frosted-Glass Card -->
+    <div
+      class="relative z-10 max-w-2xl w-full bg-white/85 sm:bg-white/90 backdrop-blur-md rounded-2xl sm:rounded-3xl p-6 sm:p-10 md:p-12 text-center shadow-[0_20px_60px_rgba(20,15,15,0.22)] border border-white/80 transition-all duration-300"
+    >
+      <!-- Top Decorative Floating Mini Card (Top Right) -->
+      <aside
+        aria-label="Featured chapter snippet"
+        class="absolute -top-6 -right-2 sm:-top-7 sm:-right-4 bg-white/95 backdrop-blur-md rounded-2xl p-2.5 sm:p-3 shadow-[0_8px_25px_rgba(200,160,170,0.25)] border border-[#FAD6DF] flex items-start gap-2.5 text-left transform rotate-2 hover:rotate-0 transition-transform duration-300 max-w-[210px] sm:max-w-[240px]"
+      >
+        <div
+          class="w-6 h-6 rounded-full bg-[#FCECEE] flex items-center justify-center text-[#D87088] shrink-0 mt-0.5"
+        >
+          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"
+            ></path>
+          </svg>
+        </div>
+        <div>
+          <p
+            class="font-serif italic text-xs sm:text-[13px] text-[#B85E71] leading-snug font-medium"
+          >
+            “to notice is to love”
+          </p>
+          <p
+            class="text-[9px] sm:text-[10px] text-[#9A8D89] uppercase tracking-wider font-semibold mt-0.5"
+          >
+            PAGE NO. 87 • MORNING
+          </p>
+          <span
+            class="inline-block text-[8px] text-[#C76B80] font-semibold tracking-widest uppercase"
+          >
+            CHAPTER 12
+          </span>
+        </div>
+      </aside>
+
+      <!-- Sparkle and Petal Floating Accents -->
+      <div
+        class="absolute top-4 left-6 text-[#DF8A9C] text-xs animate-pulse select-none pointer-events-none"
+      >
+        🌸
+      </div>
+      <div
+        class="absolute bottom-20 left-35 text-[#DF8A9C] text-sm animate-pulse select-none pointer-events-none"
+      >
+        ✦
+      </div>
+      <div
+        class="absolute bottom-6 right-40 text-[#C49774] text-xs animate-pulse select-none pointer-events-none"
+      >
+        ✦
+      </div>
+      <div
+        class="absolute top-1/3 right-20 text-[#DF8A9C] text-xs animate-pulse hidden sm:block select-none pointer-events-none"
+      >
+        ✦
+      </div>
+
+      <!-- Pill Label -->
+      <div
+        class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#FAF3F5] border border-[#F5CED7] text-[10px] sm:text-[11px] font-semibold tracking-[0.22em] uppercase text-[#B25D73] mb-4 shadow-2xs"
+      >
+        <span class="text-[#DF8A9C]">✦</span>
+        <span>THE PERSONAL JOURNAL OF ASHIE • EST. 2026</span>
+        <span class="text-[#DF8A9C]">✦</span>
+      </div>
+
+      <!-- Main Heading -->
+      <h1
+        class="font-serif text-3xl sm:text-4xl md:text-[44px] lg:text-[48px] text-[#2B2523] leading-[1.18] mb-4 tracking-tight"
+      >
+        Stories, <span class="italic text-[#D87088] font-normal"> words </span>
+        <span class="font-serif italic font-light text-[#BA8760]">&</span>
+        <span class="italic text-[#E8A0AE] font-normal">
+          <br />little pieces
+        </span> of the heart!
+      </h1>
+
+      <!-- Italicized Serif Paragraph -->
+      <p
+        class="font-serif italic text-sm sm:text-base md:text-[17px] text-[#554C49] leading-relaxed max-w-lg mx-auto mb-6"
+      >
+        Between the yellowed pages of a beloved novel is where we find the
+        pieces of ourselves we thought we'd lost. A quiet sanctuary <br />where
+        tender sentences linger forever.
+      </p>
+
+      <!-- Handwritten Script Flourish -->
+      <div
+        class="inline-flex items-center justify-center gap-2 font-script text-xl sm:text-2xl text-[#C76B80] tracking-wide"
+      >
+        <span>written with love ♡</span>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,64 @@
+---
+interface Props {
+  tag: string;
+  quoteText: string;
+  author: string;
+  likes: string;
+  alignment?: 'left' | 'right';
+  id?: string;
+}
+
+const { tag, quoteText, author, likes, alignment = 'left', id = 'quote' } = Astro.props;
+
+// Determine alignment offset for staggered organic feel
+const alignmentClass = alignment === 'left' 
+  ? 'mr-auto lg:ml-6 xl:ml-12' 
+  : 'ml-auto lg:mr-6 xl:mr-12';
+---
+
+<div class={`w-full max-w-2xl ${alignmentClass} group transition-transform duration-300 hover:-translate-y-1`}>
+  <div class="relative bg-white rounded-3xl p-7 sm:p-9 md:p-10 shadow-[0_10px_35px_rgba(210,180,185,0.12)] border border-[#F4ECE8] hover:border-[#F0D5DC] hover:shadow-[0_16px_45px_rgba(215,175,185,0.2)] transition-all duration-300">
+    
+    <!-- Top Decorative Quote Marks -->
+    <div class="flex items-center justify-between text-[#F4C4D0] opacity-80 mb-3 select-none pointer-events-none">
+      <span class="font-serif text-3xl sm:text-4xl leading-none">“</span>
+      <span class="font-serif text-3xl sm:text-4xl leading-none">”</span>
+    </div>
+
+    <!-- Quote Body -->
+    <blockquote class="my-2 sm:my-3">
+      <p class="font-serif italic text-lg sm:text-xl md:text-[22px] leading-relaxed sm:leading-relaxed text-[#2D2624] tracking-normal">
+        {quoteText}
+      </p>
+    </blockquote>
+
+    <!-- Bottom Meta Row -->
+    <div class="mt-6 pt-5 border-t border-[#F8F1EE] flex flex-wrap items-center justify-between gap-4">
+      <!-- Tag on Left -->
+      <span class="inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-semibold tracking-wider uppercase text-[#C76B80] bg-[#FCF0F3] px-3.5 py-1 rounded-full border border-[#F7D8E0]">
+        {tag}
+      </span>
+
+      <!-- Right: Author & Interactive Like Heart -->
+      <div class="flex items-center gap-4 sm:gap-6 ml-auto">
+        <span class="font-serif italic text-sm sm:text-base text-[#4E4441] font-medium">
+          — {author}
+        </span>
+
+        <!-- Like Button with micro-interaction -->
+        <button 
+          type="button" 
+          class="like-btn inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FAF5F2] hover:bg-[#FCECEE] text-[#8C7E7A] hover:text-[#C76B80] text-xs font-medium border border-[#EFE5E0] hover:border-[#F4C4D0] transition-all duration-200 cursor-pointer group/heart select-none"
+          data-likes={likes}
+          aria-label={`Like quote by ${author}`}
+        >
+          <svg class="heart-icon w-3.5 h-3.5 text-[#C76B80] transition-transform duration-200 group-hover/heart:scale-125" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          </svg>
+          <span class="likes-count font-sans">{likes}</span>
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>

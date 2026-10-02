@@ -1,0 +1,96 @@
+---
+// About.astro - Personal bio section with soft romantic aesthetics
+---
+
+<section
+  id="about"
+  class="max-w-5xl mx-auto px-4 sm:px-6 my-16 sm:my-20 md:my-24"
+>
+  <!-- Horizontally Spanning Gradient Card -->
+  <div
+    class="relative overflow-hidden rounded-3xl sm:rounded-[36px] bg-gradient-to-br from-[#FCECEE] via-[#FDF6F4] to-[#FAF2EB] border border-[#F4D7DE] p-7 sm:p-10 md:p-14 shadow-[0_15px_45px_rgba(225,185,195,0.18)]"
+  >
+    <!-- Large Decorative Pale Pink Quote Marks in Corners -->
+    <div
+      class="absolute top-4 left-6 font-serif text-6xl sm:text-7xl md:text-8xl text-[#F5C7D2] opacity-60 leading-none select-none pointer-events-none"
+    >
+      “
+    </div>
+    <div
+      class="absolute bottom-2 right-6 font-serif text-6xl sm:text-7xl md:text-8xl text-[#F5C7D2] opacity-60 leading-none select-none pointer-events-none"
+    >
+      ”
+    </div>
+
+    <div
+      class="relative z-10 flex flex-col md:flex-row items-center gap-8 sm:gap-10 md:gap-14"
+    >
+      <!-- Left Column: Circular Profile Image & Handwritten Signature -->
+      <div class="shrink-0 flex flex-col items-center">
+        <div
+          class="relative w-40 h-40 sm:w-48 sm:h-48 md:w-52 md:h-52 rounded-full p-2 bg-white/80 shadow-[0_8px_30px_rgba(200,160,170,0.25)] border-2 border-dashed border-[#EAA4B5] transition-transform duration-300 hover:scale-105"
+        >
+          <img
+            src="/images/ashie_profile.jpg"
+            alt="Ashie - Writer and Creator of Ashie Literary Journal"
+            class="w-full h-full object-cover rounded-full filter contrast-[1.02]"
+            loading="lazy"
+          />
+          <!-- Decorative flower badge -->
+          <div
+            class="absolute -bottom-1 -right-1 w-8 h-8 rounded-full bg-white shadow-md border border-[#F4CCD6] flex items-center justify-center text-xs"
+          >
+            🌸
+          </div>
+        </div>
+
+        <!-- Handwritten Signature below photo -->
+        <span
+          class="font-script text-2xl sm:text-3xl text-[#C76B80] mt-3 tracking-wide"
+        >
+          Ashie N.
+        </span>
+      </div>
+
+      <!-- Right Column: Bio Content -->
+      <div class="flex-1 text-center md:text-left">
+        <!-- Label Badge -->
+        <div
+          class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/85 border border-[#F4CCD6] text-[10px] sm:text-[11px] font-semibold tracking-[0.2em] uppercase text-[#B25D73] mb-3 shadow-2xs"
+        >
+          <span>A LITTLE ABOUT ME</span>
+        </div>
+
+        <!-- Heading with vertical accent bar -->
+        <div
+          class="flex items-center justify-center md:justify-start gap-3 mb-4"
+        >
+          <div class="w-1.5 h-7 rounded-full bg-[#DF8A9C] hidden md:block">
+          </div>
+          <h2
+            class="font-serif text-2xl sm:text-3xl md:text-4xl text-[#2B2523] font-bold tracking-tight"
+          >
+            Hi, I'm Ashie.
+          </h2>
+        </div>
+
+        <!-- Bio Paragraphs -->
+        <div
+          class="space-y-3.5 text-sm sm:text-base text-[#524845] leading-relaxed font-sans"
+        >
+          <p>
+            I am a collector of gentle hours, antique book margins, and the
+            tender feelings people rarely say aloud. I write to remember how the
+            light felt at dusk and to remind myself that ordinary days hold
+            enough grace on their own.
+          </p>
+          <p class="text-[#685D59]">
+            When I'm not reading, you'll find me brewing cinnamon chai, pressing
+            jasmine petals between hardback novels, wandering through green
+            fields, or gazing at the sky.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

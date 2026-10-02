@@ -1,0 +1,125 @@
+---
+import QuoteCard from "./QuoteCard.astro";
+
+const quotes = [
+  {
+    id: "quote-1",
+    tag: "#01 • READING NOTES",
+    quoteText:
+      "She was a wild, gorgeous thing, caught in a world that never quite understood the quiet storms inside her.",
+    author: "The Secret History",
+    likes: "1.4k",
+    alignment: "left" as const,
+  },
+  {
+    id: "quote-2",
+    tag: "#02 • CLASSIC GOTHIC",
+    quoteText: "Whatever our souls are made of, his and mine are the same.",
+    author: "Wuthering Heights",
+    likes: "2.8k",
+    alignment: "right" as const,
+  },
+  {
+    id: "quote-3",
+    tag: "#03 • COMING OF AGE",
+    quoteText:
+      "We accept the love we think we deserve, yet we spend our lives searching for the one that defies all reason.",
+    author: "The Perks of Being a Wallflower",
+    likes: "986",
+    alignment: "left" as const,
+  },
+  {
+    id: "quote-4",
+    tag: "#04 • REGENCY ROMANCE",
+    quoteText:
+      "I have loved none but you. You pierce my soul. I am half agony, half hope. Tell me not that I am too late, that such precious feelings are gone for ever.",
+    author: "Persuasion",
+    likes: "2.1k",
+    alignment: "right" as const,
+  },
+];
+---
+
+<section
+  id="quotes"
+  class="max-w-5xl mx-auto px-4 sm:px-6 my-12 sm:my-16 md:my-20"
+>
+  <!-- Subtle decorative label / header -->
+  <div class="text-center mb-10 sm:mb-12">
+    <div
+      class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FCF0F3] border border-[#F7D8E0] text-[10px] sm:text-xs font-semibold tracking-[0.2em] uppercase text-[#C76B80] mb-2.5"
+    >
+      <span>✦</span> LINGERING QUOTES <span>✦</span>
+    </div>
+  </div>
+
+  <!-- Vertically Staggered Quotes Container -->
+  <div class="flex flex-col space-y-7 sm:space-y-9 md:space-y-12">
+    {
+      quotes.map((quote) => (
+        <QuoteCard
+          id={quote.id}
+          tag={quote.tag}
+          quoteText={quote.quoteText}
+          author={quote.author}
+          likes={quote.likes}
+          alignment={quote.alignment}
+        />
+      ))
+    }
+  </div>
+</section>
+
+<script>
+  // Interactive like button handler
+  document.querySelectorAll(".like-btn").forEach((button) => {
+    let liked = false;
+    const countSpan = button.querySelector(".likes-count");
+    const heartIcon = button.querySelector(".heart-icon");
+    const rawVal = button.getAttribute("data-likes") || "0";
+
+    button.addEventListener("click", () => {
+      liked = !liked;
+      if (liked) {
+        button.classList.add(
+          "bg-[#FCECEE]",
+          "text-[#C76B80]",
+          "border-[#F4C4D0]",
+        );
+        button.classList.remove(
+          "bg-[#FAF5F2]",
+          "text-[#8C7E7A]",
+          "border-[#EFE5E0]",
+        );
+        if (heartIcon) {
+          heartIcon.classList.add("scale-125");
+        }
+        if (countSpan) {
+          if (rawVal.endsWith("k")) {
+            const num = parseFloat(rawVal);
+            countSpan.textContent = (num + 0.1).toFixed(1) + "k";
+          } else {
+            countSpan.textContent = (parseInt(rawVal, 10) + 1).toString();
+          }
+        }
+      } else {
+        button.classList.remove(
+          "bg-[#FCECEE]",
+          "text-[#C76B80]",
+          "border-[#F4C4D0]",
+        );
+        button.classList.add(
+          "bg-[#FAF5F2]",
+          "text-[#8C7E7A]",
+          "border-[#EFE5E0]",
+        );
+        if (heartIcon) {
+          heartIcon.classList.remove("scale-125");
+        }
+        if (countSpan) {
+          countSpan.textContent = rawVal;
+        }
+      }
+    });
+  });
+</script>
