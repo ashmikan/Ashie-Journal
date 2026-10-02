@@ -1,22 +1,116 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Ashie-Journal</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+---
+import "../styles/global.css";
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = "Ashie", description = "Literary Journal" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌸</text></svg>"
+    />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- SEO Meta Tags -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#FAF7F2" />
+
+    <!-- Google Fonts: Playfair Display (Serif), Plus Jakarta Sans (Sans-Serif), Caveat (Script) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body
+    class="bg-[#FAF7F2] text-[#2B2523] font-sans antialiased min-h-screen selection:bg-[#F8D7DF] selection:text-[#2B2523]"
+  >
+    <!-- Header -->
+    <header
+      class="w-full border-b border-[#EFE5DE]/60 bg-[#FAF7F2]/90 backdrop-blur-md sticky top-0 z-50 transition-all duration-300"
+    >
+      <div
+        class="max-w-5xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between gap-4"
+      >
+        <!-- Logo on the Left -->
+        <a
+          href="/"
+          class="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DF8A9C] rounded-xl p-1"
+        >
+          <!-- Stamp / Seal Icon -->
+          <div
+            class="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#FCF0F3] border border-[#F4CCD6] flex items-center justify-center text-[#DF8A9C] shadow-2xs group-hover:scale-105 transition-transform duration-200"
+          >
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"
+              ></path>
+            </svg>
+          </div>
+
+          <!-- Text Branding -->
+          <div class="flex flex-col">
+            <div class="flex items-baseline gap-1.5">
+              <span
+                class="font-serif font-bold text-xl sm:text-2xl text-[#2B2523] tracking-tight group-hover:text-[#C76B80] transition-colors"
+              >
+                Ashie
+              </span>
+              <span
+                class="font-script text-lg sm:text-xl text-[#DF8A9C] tracking-wide"
+              >
+                Journal
+              </span>
+            </div>
+            <span
+              class="text-[9px] uppercase tracking-[0.24em] text-[#8C807B] font-semibold -mt-0.5"
+            >
+              LINGERING WORDS
+            </span>
+          </div>
+        </a>
+
+        <!-- "Share your thoughts" Action Button on the Right -->
+        <a
+          href="#thoughts"
+          class="inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-white/95 hover:bg-white text-[#4A403D] hover:text-[#C76B80] text-xs sm:text-sm font-medium border border-[#E9DDD7] hover:border-[#F4C4D0] shadow-xs hover:shadow-md transition-all duration-200 active:scale-95"
+        >
+          <svg
+            class="w-3.5 h-3.5 text-[#DF8A9C]"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M12 20h9"></path>
+            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"
+            ></path>
+          </svg>
+          <span>Share your thoughts</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- Main Content Slot -->
+    <main class="w-full">
+      <slot />
+    </main>
+  </body>
+</html>
