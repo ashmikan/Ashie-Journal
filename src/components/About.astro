@@ -61,16 +61,15 @@
           <span>A LITTLE ABOUT ME</span>
         </div>
 
-        <!-- Heading with vertical accent bar -->
+        <!-- Heading with animated text and pink cursor -->
         <div
-          class="flex items-center justify-center md:justify-start gap-3 mb-4"
+          class="flex items-center justify-center md:justify-start gap-2 mb-4"
         >
-          <div class="w-1.5 h-7 rounded-full bg-[#DF8A9C] hidden md:block">
-          </div>
           <h2
-            class="font-serif text-2xl sm:text-3xl md:text-4xl text-[#2B2523] font-bold tracking-tight"
+            class="font-serif text-2xl sm:text-3xl md:text-4xl text-[#2B2523] font-bold tracking-tight flex items-center"
           >
-            Hi, I'm Ashie.
+            <span id="animated-name" class="inline-block align-bottom min-h-[1.2em]"></span>
+            <div class="w-[3px] h-[1.2em] bg-[#DF8A9C] blink-cursor ml-1 sm:ml-1.5"></div>
           </h2>
         </div>
 
@@ -94,3 +93,41 @@
     </div>
   </div>
 </section>
+
+<script>
+  const text = "Hi, I'm Ashie.";
+  const el = document.getElementById("animated-name");
+  let i = 0;
+  
+  function typeWriter() {
+    if (!el) return;
+    
+    if (i < text.length) {
+      setTimeout(() => {
+        el.textContent += text.charAt(i);
+        i++;
+        typeWriter();
+      }, 120); // Delay before typing the letter
+    } else {
+      // Pause at the end before restarting
+      setTimeout(() => {
+        el.textContent = "";
+        i = 0;
+        typeWriter();
+      }, 1000);
+    }
+  }
+
+  // Start the typing effect when the script loads
+  typeWriter();
+</script>
+
+<style>
+  .blink-cursor {
+    animation: blink-animation 0.5s step-end infinite;
+  }
+  @keyframes blink-animation {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+</style>

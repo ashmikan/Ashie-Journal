@@ -7,13 +7,30 @@
   <div
     class="relative rounded-3xl sm:rounded-[36px] overflow-hidden shadow-[0_20px_50px_rgba(70,45,40,0.14)] border border-[#EBE1D8] min-h-[480px] sm:min-h-[540px] md:min-h-[580px] flex items-center justify-center p-5 sm:p-8 md:p-12"
   >
-    <!-- Background Image with Vintage Film Warm Vignette -->
-    <img
-      src="/images/hero_vintage_desk.jpg"
-      alt="Vintage wooden desk with open antique book, candle, and dried rose petals"
-      class="absolute inset-0 w-full h-full object-cover object-center scale-105 filter brightness-[0.92] contrast-[1.03]"
-      loading="eager"
-    />
+    <!-- Background Images Carousel with Vintage Film Warm Vignette -->
+    <div class="absolute inset-0 w-full h-full z-0 overflow-hidden bg-[#2B2523]">
+      <img
+        src="/images/3.jpg"
+        alt="Vintage wooden desk with open antique book, candle, and dried rose petals"
+        class="absolute inset-0 w-full h-full object-cover object-center scale-105 filter brightness-[0.92] contrast-[1.03] animate-hero-crossfade opacity-0"
+        style="animation-delay: 0s;"
+        loading="eager"
+      />
+      <img
+        src="/images/2.jpeg"
+        alt="Vintage romantic scene"
+        class="absolute inset-0 w-full h-full object-cover object-center scale-105 filter brightness-[0.92] contrast-[1.03] animate-hero-crossfade opacity-0"
+        style="animation-delay: 5s;"
+        loading="lazy"
+      />
+      <img
+        src="/images/1.jpg"
+        alt="Soft aesthetic scene"
+        class="absolute inset-0 w-full h-full object-cover object-center scale-105 filter brightness-[0.92] contrast-[1.03] animate-hero-crossfade opacity-0"
+        style="animation-delay: 10s;"
+        loading="lazy"
+      />
+    </div>
 
     <!-- Subtle warm atmospheric gradient overlays -->
     <div
@@ -27,7 +44,7 @@
 
     <!-- Centered Translucent White Frosted-Glass Card -->
     <div
-      class="relative z-10 max-w-2xl w-full bg-white/85 sm:bg-white/90 backdrop-blur-md rounded-2xl sm:rounded-3xl p-6 sm:p-10 md:p-12 text-center shadow-[0_20px_60px_rgba(20,15,15,0.22)] border border-white/80 transition-all duration-300"
+      class="relative z-10 max-w-2xl w-full bg-white/10 sm:bg-white/70 backdrop-blur-lg rounded-2xl sm:rounded-3xl p-6 sm:p-10 md:p-12 text-center shadow-[0_20px_60px_rgba(20,15,15,0.22)] border border-white/80 transition-all duration-300"
     >
       <!-- Top Decorative Floating Mini Card (Top Right) -->
       <aside
@@ -122,3 +139,16 @@
     </div>
   </div>
 </section>
+
+<style>
+  .animate-hero-crossfade {
+    animation: hero-crossfade 15s infinite;
+  }
+  @keyframes hero-crossfade {
+    0% { opacity: 0; }
+    10% { opacity: 1; }
+    33% { opacity: 1; }
+    43% { opacity: 0; }
+    100% { opacity: 0; }
+  }
+</style>
