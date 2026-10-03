@@ -40,6 +40,28 @@ const { title = "Ashie", description = "Literary Journal" } = Astro.props;
   <body
     class="bg-[#FAF7F2] text-[#2B2523] font-sans antialiased min-h-screen selection:bg-[#F8D7DF] selection:text-[#2B2523]"
   >
+    <!-- 3 Second Page Loader -->
+    <div id="page-loader" class="fixed inset-0 z-[9999] bg-[#FAF7F2] flex flex-col items-center justify-center transition-opacity duration-700 overflow-hidden">
+      <!-- Background Image with Reduced Opacity -->
+      <img src="/images/3.jpg" alt="" class="absolute inset-0 w-full h-full object-cover z-0 opacity-20" loading="eager" />
+      
+      <!-- Loader Content -->
+      <div class="relative z-10 w-12 h-12 border-4 border-[#F4CCD6] border-t-[#C76B80] rounded-full animate-spin mb-4 shadow-sm"></div>
+      <p class="relative z-10 font-serif text-[#C76B80] font-semibold tracking-widest uppercase text-sm animate-pulse">Loading Ashie journal... </p>
+    </div>
+    <script>
+      // Disable loader after 3 seconds
+      setTimeout(() => {
+        const loader = document.getElementById('page-loader');
+        if (loader) {
+          loader.classList.add('opacity-0', 'pointer-events-none');
+          setTimeout(() => {
+            loader.remove();
+          }, 700);
+        }
+      }, 3000);
+    </script>
+
     <!-- Header -->
     <header
       class="w-full border-b border-[#EFE5DE]/60 bg-[#FAF7F2]/90 backdrop-blur-md sticky top-0 z-50 transition-all duration-300"
@@ -110,5 +132,37 @@ const { title = "Ashie", description = "Literary Journal" } = Astro.props;
     <main class="w-full">
       <slot />
     </main>
+
+    <!-- Scroll to Top Button -->
+    <div id="scrollToTopWrapper" class="fixed bottom-6 right-6 sm:bottom-8 sm:right-8 z-50 transition-all duration-300 opacity-0 translate-y-10 pointer-events-none">
+      <button
+        id="scrollToTopBtn"
+        class="animate-bounce p-3 sm:p-3.5 rounded-full bg-white text-[#C76B80] border border-[#F4CCD6] shadow-[0_8px_20px_rgba(200,160,170,0.25)] hover:shadow-[0_12px_25px_rgba(200,160,170,0.35)] hover:bg-[#FCF0F3] transition-colors duration-300 cursor-pointer"
+        aria-label="Scroll to top"
+      >
+        <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 15l7-7 7 7"></path>
+        </svg>
+      </button>
+    </div>
+
+    <script>
+      const wrapper = document.getElementById("scrollToTopWrapper");
+      const btn = document.getElementById("scrollToTopBtn");
+      
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 300) {
+          wrapper.classList.remove("opacity-0", "translate-y-10", "pointer-events-none");
+          wrapper.classList.add("opacity-100", "translate-y-0");
+        } else {
+          wrapper.classList.add("opacity-0", "translate-y-10", "pointer-events-none");
+          wrapper.classList.remove("opacity-100", "translate-y-0");
+        }
+      });
+
+      btn.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    </script>
   </body>
 </html>
