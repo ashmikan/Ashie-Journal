@@ -1,11 +1,11 @@
 <div align="center">
 
-  # 🌸 Ashie — Literary Journal
+  # 🌸 Ashie - Literary Journal
   
   *“Stories, words & little pieces of the heart.”*
 
   <p align="center">
-    A quiet, romantic web sanctuary crafted for tender literary excerpts, antique book margins, and 90s vintage paper aesthetics.
+    A quiet, romantic web sanctuary crafted for tender literary excerpts, antique book margins and vintage paper aesthetics.
   </p>
 
   <p align="center">
@@ -31,7 +31,7 @@
 
 ## 📖 About The Journal
 
-**Ashie** is an intimate digital journal created for book lovers, quiet dreamers, and collectors of beautiful sentences. Designed with warm cream tones, subtle floral charms, and tactile glassmorphic layers, it offers readers a calming respite from the hurried modern web.
+**Ashie Journal** is an intimate digital journal created for book lovers, quiet dreamers, and collectors of beautiful quotes. Designed with warm cream tones, subtle floral charms, and tactile glassmorphic layers, it offers readers a calming respite from the hurried modern web.
 
 > *“Between the yellowed pages of a beloved novel is where we find the pieces of ourselves we thought we’d lost. A quiet sanctuary where tender sentences linger forever.”*
 
@@ -41,19 +41,19 @@
 
 The journal is thoughtfully styled using a bespoke retro-vintage color scheme inspired by antique parchment, dried blush petals, and soft ink.
 
-| Token | Hex | Swatch | Purpose |
-| :--- | :--- | :---: | :--- |
-| **Parchment Cream** | `#FAF7F2` | `██████` | Background warmth & natural paper canvas |
-| **Blush Rose** | `#FCECEE` | `██████` | Soft card tints, badges, and pill tags |
-| **Rose Petal** | `#DF8A9C` | `██████` | Buttons, icons, and accent borders |
-| **Deep Rose** | `#C76B80` | `██████` | Script calligraphy, hover states & highlights |
-| **Warm Ink** | `#2B2523` | `██████` | Primary literary serif typography |
-| **Muted Sepia** | `#7A706C` | `██████` | Metadata, citations, and secondary copy |
+| Token | Hex | Purpose |
+| :--- | :--- | :--- |
+| **Parchment Cream** | `#FAF7F2` | Background warmth & natural paper canvas |
+| **Blush Rose** | `#FCECEE` | Soft card tints, badges, and pill tags |
+| **Rose Petal** | `#DF8A9C` | Buttons, icons, and accent borders |
+| **Deep Rose** | `#C76B80` | Script calligraphy, hover states & highlights |
+| **Warm Ink** | `#2B2523` | Primary literary serif typography |
+| **Muted Sepia** | `#7A706C` | Metadata, citations, and secondary copy |
 
 ### 🖋️ Typography Harmony
-- **Playfair Display** — Elegant serif headers reminiscent of classic printed literature.
-- **Plus Jakarta Sans** — Crisp, clean modern sans-serif for legible UI elements and micro-copy.
-- **Caveat** — Organic, handwritten cursive notes scattered throughout the experience.
+- **Playfair Display** - Elegant serif headers reminiscent of classic printed literature.
+- **Plus Jakarta Sans** - Crisp, clean modern sans-serif for legible UI elements and micro-copy.
+- **Caveat** - Organic, handwritten cursive notes scattered throughout the experience.
 
 ---
 
@@ -163,6 +163,7 @@ Have a question, book recommendation, or beloved quote to share?
 - **Location**: Kalutara, Sri Lanka
 - **Email**: [ashmika.nathali123@gmail.com](mailto:ashmika.nathali123@gmail.com)
 - **Repository**: [github.com/ashmikan/Ashie-Journal](https://github.com/ashmikan/Ashie-Journal)
+
 
 <div align="center">
   <br />
