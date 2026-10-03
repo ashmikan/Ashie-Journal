@@ -6,9 +6,10 @@ interface Props {
   likes: string;
   alignment?: 'left' | 'right';
   id?: string;
+  bgImage?: string;
 }
 
-const { tag, quoteText, author, likes, alignment = 'left', id = 'quote' } = Astro.props;
+const { tag, quoteText, author, likes, alignment = 'left', id = 'quote', bgImage } = Astro.props;
 
 // Determine alignment offset for staggered organic feel
 const alignmentClass = alignment === 'left' 
@@ -16,24 +17,31 @@ const alignmentClass = alignment === 'left'
   : 'ml-auto lg:mr-6 xl:mr-12';
 ---
 
-<div class={`w-full max-w-2xl ${alignmentClass} group transition-transform duration-300 hover:-translate-y-1`}>
-  <div class="relative bg-white rounded-3xl p-7 sm:p-9 md:p-10 shadow-[0_10px_35px_rgba(210,180,185,0.12)] border border-[#F4ECE8] hover:border-[#F0D5DC] hover:shadow-[0_16px_45px_rgba(215,175,185,0.2)] transition-all duration-300">
+<div class={`quote-animate opacity-0 translate-y-12 transition-all duration-[800ms] ease-out w-full max-w-2xl ${alignmentClass} group`}>
+  <div class={`relative bg-white rounded-3xl p-7 sm:p-9 md:p-10 shadow-[0_10px_35px_rgba(210,180,185,0.12)] border-2 border-[#F4ECE8] group-hover:border-[#F0D5DC] group-hover:shadow-[0_16px_45px_rgba(215,175,185,0.2)] transition-all duration-300 group-hover:-translate-y-1 ${bgImage ? 'overflow-hidden' : ''}`}>
     
+    {bgImage && (
+      <>
+        <img src={bgImage} alt="" class="absolute inset-0 w-full h-full object-cover z-0 opacity-60 object-center" />
+        <div class="absolute inset-0 bg-white/60 backdrop-blur-[2px] z-0"></div>
+      </>
+    )}
+
     <!-- Top Decorative Quote Marks -->
-    <div class="flex items-center justify-between text-[#F4C4D0] opacity-80 mb-3 select-none pointer-events-none">
+    <div class="relative z-10 flex items-center justify-between text-[#F4C4D0] opacity-80 mb-3 select-none pointer-events-none">
       <span class="font-serif text-3xl sm:text-4xl leading-none">“</span>
       <span class="font-serif text-3xl sm:text-4xl leading-none">”</span>
     </div>
 
     <!-- Quote Body -->
-    <blockquote class="my-2 sm:my-3">
+    <blockquote class="relative z-10 my-2 sm:my-3">
       <p class="font-serif italic text-lg sm:text-xl md:text-[22px] leading-relaxed sm:leading-relaxed text-[#2D2624] tracking-normal whitespace-pre-line">
         {quoteText}
       </p>
     </blockquote>
 
     <!-- Bottom Meta Row -->
-    <div class="mt-6 pt-5 border-t border-[#F8F1EE] flex flex-wrap items-center justify-between gap-4">
+    <div class="relative z-10 mt-6 pt-5 border-t border-[#F8F1EE] flex flex-wrap items-center justify-between gap-4">
       <!-- Tag on Left -->
       <span class="inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-semibold tracking-wider uppercase text-[#C76B80] bg-[#FCF0F3] px-3.5 py-1 rounded-full border border-[#F7D8E0]">
         {tag}
@@ -50,6 +58,7 @@ const alignmentClass = alignment === 'left'
           type="button" 
           class="like-btn inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FAF5F2] hover:bg-[#FCECEE] text-[#8C7E7A] hover:text-[#C76B80] text-xs font-medium border border-[#EFE5E0] hover:border-[#F4C4D0] transition-all duration-200 cursor-pointer group/heart select-none"
           data-likes={likes}
+          data-id={id}
           aria-label={`Like quote by ${author}`}
         >
           <svg class="heart-icon w-3.5 h-3.5 text-[#C76B80] transition-transform duration-200 group-hover/heart:scale-125" viewBox="0 0 24 24" fill="currentColor">
