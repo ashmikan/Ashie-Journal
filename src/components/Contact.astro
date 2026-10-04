@@ -374,6 +374,10 @@
           feedback.textContent =
             "Thank you for sharing your piece of heart. It has been delivered into the journal sanctuary. ♡";
           form.reset();
+          
+          // Play the submit success sound
+          const submitSound = new Audio("/Submit.mp3");
+          submitSound.play().catch(e => console.log("Error playing submit sound:", e));
         } else {
           feedback.classList.remove("hidden");
           feedback.textContent =
