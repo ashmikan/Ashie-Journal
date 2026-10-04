@@ -103,8 +103,10 @@ const { title = "Ashie", description = "Literary Journal" } = Astro.props;
       >
         <!-- Logo on the Left -->
         <a
-          href="/"
-          class="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DF8A9C] rounded-xl p-1"
+          href="#hero"
+          id="brandLogoLink"
+          aria-label="Ashie Journal - Go to Hero section"
+          class="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DF8A9C] rounded-xl p-1 cursor-pointer"
         >
           <!-- Logo Image -->
           <img
@@ -221,6 +223,21 @@ const { title = "Ashie", description = "Literary Journal" } = Astro.props;
 
         btn.addEventListener("click", () => {
           window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+      }
+
+      // Brand Logo smooth scroll to Hero section without refreshing
+      const brandLogo = document.getElementById("brandLogoLink");
+      if (brandLogo) {
+        brandLogo.addEventListener("click", (e) => {
+          const heroEl = document.getElementById("hero");
+          if (heroEl) {
+            e.preventDefault();
+            heroEl.scrollIntoView({ behavior: "smooth" });
+            if (window.location.hash !== "#hero") {
+              history.pushState(null, "", "#hero");
+            }
+          }
         });
       }
 
