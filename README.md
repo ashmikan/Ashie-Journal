@@ -105,7 +105,17 @@ cd Ashie-Journal
 npm install
 ```
 
-### 4. Run the Development Server
+### 4. Configure likes
+
+Copy `.env.example` to `.env` and fill in the REST URL and token from your Upstash Redis database:
+
+```bash
+copy .env.example .env
+```
+
+The likes API returns `503 Likes service is not configured` when these variables are missing, rather than attempting to connect with an invalid Redis client.
+
+### 5. Run the Development Server
 ```bash
 npm run dev
 ```

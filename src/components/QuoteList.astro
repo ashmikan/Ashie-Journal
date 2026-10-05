@@ -386,36 +386,32 @@ const quotes = [
   // Interactive like button handler
   document.querySelectorAll(".like-btn").forEach((button) => {
     const quoteId = button.getAttribute("data-id");
+
+    if (!quoteId) return;
+
     const storageKey = `liked-${quoteId}`;
-    let liked = localStorage.getItem(storageKey) === "true";
-    
+
     const countSpan = button.querySelector(".likes-count");
     const heartIcon = button.querySelector(".heart-icon");
-    const rawVal = button.getAttribute("data-likes") || "";
 
-    const updateUI = () => {
+    let liked = localStorage.getItem(storageKey) === "true";
+
+    const updateButtonUI = () => {
       if (liked) {
         button.classList.add(
           "bg-[#FCECEE]",
           "text-[#C76B80]",
           "border-[#F4C4D0]",
         );
+
         button.classList.remove(
           "bg-[#FAF5F2]",
           "text-[#8C7E7A]",
           "border-[#EFE5E0]",
         );
+
         if (heartIcon) {
           heartIcon.classList.add("scale-125");
-        }
-        if (countSpan) {
-          if (rawVal.endsWith("k")) {
-            const num = parseFloat(rawVal);
-            countSpan.textContent = (num + 0.1).toFixed(1) + "k";
-          } else {
-            const currentNum = parseInt(rawVal, 10) || 0;
-            countSpan.textContent = (currentNum + 1).toString();
-          }
         }
       } else {
         button.classList.remove(
@@ -423,29 +419,74 @@ const quotes = [
           "text-[#C76B80]",
           "border-[#F4C4D0]",
         );
+
         button.classList.add(
           "bg-[#FAF5F2]",
           "text-[#8C7E7A]",
           "border-[#EFE5E0]",
         );
+
         if (heartIcon) {
           heartIcon.classList.remove("scale-125");
-        }
-        if (countSpan) {
-          countSpan.textContent = rawVal;
         }
       }
     };
 
-    // Set initial UI state
-    updateUI();
+    const loadLikes = async () => {
+      try {
+        const response = await fetch(`/api/likes/${quoteId}`);
 
-    button.addEventListener("click", () => {
-      liked = !liked;
-      if (quoteId) {
-        localStorage.setItem(storageKey, liked.toString());
+        if (!response.ok) {
+          throw new Error("Failed to load likes");
+        }
+
+        const data = await response.json();
+
+        if (countSpan) {
+          countSpan.textContent = data.likes.toString();
+        }
+      } catch (error) {
+        console.error("Error loading likes:", error);
       }
-      updateUI();
-    });
+    };
+
+    const likeQuote = async () => {
+      if (liked) {
+        return;
+      }
+
+      try {
+        button.setAttribute("disabled", "true");
+
+        const response = await fetch(`/api/likes/${quoteId}`, {
+          method: "POST",
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to like quote");
+        }
+
+        const data = await response.json();
+
+        liked = true;
+
+        localStorage.setItem(storageKey, "true");
+
+        if (countSpan) {
+          countSpan.textContent = data.likes.toString();
+        }
+
+        updateButtonUI();
+      } catch (error) {
+        console.error("Error liking quote:", error);
+      } finally {
+        button.removeAttribute("disabled");
+      }
+    };
+
+    updateButtonUI();
+    loadLikes();
+
+    button.addEventListener("click", likeQuote);
   });
 </script>
