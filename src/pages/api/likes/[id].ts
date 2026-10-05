@@ -123,3 +123,68 @@ export const POST: APIRoute = async ({ params }) => {
     );
   }
 };
+
+export const DELETE: APIRoute = async ({ params }) => {
+  const quoteId = params.id;
+
+  if (!quoteId) {
+    return new Response(
+      JSON.stringify({ error: "Quote ID is required" }),
+      {
+        status: 400,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      },
+    );
+  }
+
+  if (!redis) {
+    return new Response(
+      JSON.stringify({ error: "Likes service is not configured" }),
+      {
+        status: 503,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      },
+    );
+  }
+
+  try {
+    const key = `quote:${quoteId}:likes`;
+    const currentLikes = (await redis.get<number>(key)) ?? 0;
+    const likes = currentLikes > 0 ? await redis.decr(key) : 0;
+
+    if (likes < 0) {
+      await redis.set(key, 0);
+    }
+
+    return new Response(
+      JSON.stringify({
+        quoteId,
+        likes: Math.max(likes, 0),
+      }),
+      {
+        status: 200,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      },
+    );
+  } catch (error) {
+    console.error("Redis DELETE error:", error);
+
+    return new Response(
+      JSON.stringify({
+        error: "Failed to remove like",
+      }),
+      {
+        status: 500,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      },
+    );
+  }
+};

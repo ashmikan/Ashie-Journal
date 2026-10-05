@@ -451,15 +451,14 @@ const quotes = [
     };
 
     const likeQuote = async () => {
-      if (liked) {
-        return;
-      }
-
       try {
         button.setAttribute("disabled", "true");
 
         const response = await fetch(`/api/likes/${quoteId}`, {
-          method: "POST",
+          method: liked ? "DELETE" : "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
         });
 
         if (!response.ok) {
@@ -468,9 +467,13 @@ const quotes = [
 
         const data = await response.json();
 
-        liked = true;
+        liked = !liked;
 
-        localStorage.setItem(storageKey, "true");
+        if (liked) {
+          localStorage.setItem(storageKey, "true");
+        } else {
+          localStorage.removeItem(storageKey);
+        }
 
         if (countSpan) {
           countSpan.textContent = data.likes.toString();
